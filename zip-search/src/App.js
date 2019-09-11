@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
 
 function City(props) {
   return (<div></div>);
@@ -10,7 +8,6 @@ function City(props) {
 function ZipSearchField(props) {
   return (<div></div>);
 }
-
 
 class App extends Component {
   render() {

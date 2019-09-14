@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ZipSearch from './ZipSearch';
 import './App.css';
 
 function City(props) {
@@ -14,16 +15,14 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Zip Code Search</h2>
+          <h1>City / Zip Code Search</h1>
         </div>
-        <ZipSearchField />
-        <div>
-          <City />
-          <City />
+        <div className="container w-50 text-center">
+          <ZipSearch />
         </div>
-      </div>
+      </div >
     );
   }
 }
 
-export default App;
+export default App

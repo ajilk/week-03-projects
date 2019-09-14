@@ -4,7 +4,7 @@ class Button extends Component {
   render() {
     return (
       <button 
-        className={"btn btn-dark " + this.props.className}
+        className={"btn btn-outline-dark " + this.props.className}
         onClick={this.props.onClick}>{this.props.value || 'Search'}
       </button>
     );

@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import ZipCitySearch from './ZipCitySearch';
 import City from './City';
+import Zip from './Zip';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      cities: []
+      cities: [],
+      zips: []
     }
     this.baseState = this.state
   }
 
   resetState = () => this.setState(this.baseState)
 
-  updateResults = (cities) => {
-    this.setState({ error: false, cities: cities });
+  updateResults = (dataType, data) => {
+    this.resetState()
+    if (dataType === 'zip') { this.setState({ zips: data }) }
+    else if (dataType === 'city') { this.setState({ cities: data }) }
   }
 
-  onNoResults = (error) => {
-    this.setState({ error });
-  }
+  onNoResults = (error) => this.resetState()
 
   render() {
     let result
-    console.log(this.state.cities)
-    if (this.state.error) result = <div>{this.state.error.toString()}</div>
-    else { result = this.state.cities.map((city) => <City city={city} />) }
+    if (this.state.cities.length) { result = this.state.cities.map((city) => <City key={city.RecordNumber} city={city} />) }
+    else if (this.state.zips.length) { result = this.state.zips.map((zip) => <Zip key={zip} zip={zip} />) }
+    else result = <div>NO RESULTS</div>
     return (
       <div className="App">
         <div className="App-header">

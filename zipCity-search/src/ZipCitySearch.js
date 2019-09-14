@@ -26,26 +26,18 @@ export class ZipSearch extends Component {
       case 'city':
         fetch("http://ctp-zip-api.herokuapp.com/city/" + this.state.search)
           .then(result => result.json())
-          .then(result => {
-            for (var i = 0; i < result.length; i++) {
-              this.fetchByZip(result[i])
-            }
-          });
+          .then(result => this.props.onSearchResults('zip', result));
         break;
       case 'zip':
-        this.fetchByZip(this.state.search)
+        fetch("http://ctp-zip-api.herokuapp.com/zip/" + this.state.search)
+          .then(result => result.json())
+          .then(
+            result => { this.props.onSearchResults('city', result) },
+            error => { this.props.onNoResults(error) }
+          )
         break;
       default: break;
     }
-  }
-
-  fetchByZip(zip) {
-    fetch("http://ctp-zip-api.herokuapp.com/zip/" + zip) 
-      .then(result => result.json())
-      .then(
-        result => { this.props.onSearchResults(result) },
-        error => { this.props.onNoResults(error) }
-      )
   }
 
   render() {
